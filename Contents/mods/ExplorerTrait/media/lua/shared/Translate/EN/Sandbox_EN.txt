@@ -1,0 +1,13 @@
+Sandbox_EN = {
+	Sandbox_ExplorerTrait = "Explorer Trait",
+	Sandbox_ExplorerTrait_ExplorerTraitRevealRadius = "Reveal radius",
+	Sandbox_ExplorerTrait_ExplorerTraitRevealRadius_tooltip = "How much of a map around you is revealed. Default = 90 = doubled exploration radius",
+	Sandbox_ExplorerTrait_ExplorerTraitDynamic = "Explorer trait is dynamic",
+	Sandbox_ExplorerTrait_ExplorerTraitDynamic_tooltip = "If true, you can earn Explorer trait by exploring stuff",
+	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain = "Amount of explored cells to earn the trait",
+	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain_tooltip = "World map currently is 60x50=3000 cells.<br>This option has close to none impact on performance",
+	Sandbox_ExplorerTrait_PercentageToCountCellExplored = "% of cell to explore to count it",
+	Sandbox_ExplorerTrait_PercentageToCountCellExplored_tooltip = "How much of cell you have to explore to have it counted as explored. Each cell is 300x300=90k squares. Data is saved on each individual square so you don't have to worry about your progress or grind, you will get the trait if you play game normally and explore the world.<br>This option has close to none impact on performance",
+	Sandbox_ExplorerTrait_ExplorationRadius = "Exploration radius",
+	Sandbox_ExplorerTrait_ExplorationRadius_tooltip = "How many cells around you are grabbed every in-game minute. This is radius, meaning if it's set to 10 it grabs 20x20 square around you, which is 400 squares, which it then adds to list of explored tiles in this cell. <br>This option can have MAJOR impact on performance.<br>Personally tested only up to 15 radius, don't want more.<br>10 = 20x20 = 400 squares/min | 11 = 22x22 = 484 squares/min<br>12 = 24x24 = 576 squares/min | 13 = 26x26 = 676 squares/min<br>14 = 28x28 = 784 squares/min | 15 = 30x30 = 900 squares/min<br>16 = 32x32 = 1024 squares/min | 17 = 34x34 = 1156 squares/min<br>18 = 36x36 = 1296 squares/min | 20 = 40x40 = 1600 squares/min<br>25 = 50x50 = 2500 squares/min | 30 = 60x60 = 3600 squares/min",
+}

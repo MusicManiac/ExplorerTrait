@@ -1,7 +1,0 @@
-description=This mod adds an Explorer Trait with the following effects:
-description=[list]
-description=[*] Costs 1 points,
-description=[*] Increases the drawing map radius by 120 tiles.
-description=[*] Minor foraging stats: +0.5 foraging radius, -10% weather effect, -2% darkness effect.
-description=[/list]
-

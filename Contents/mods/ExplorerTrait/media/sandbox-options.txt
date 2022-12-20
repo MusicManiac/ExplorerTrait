@@ -1,0 +1,45 @@
+VERSION = 1,
+
+option ExplorerTrait.RevealRadius
+{
+	type = integer,
+	min = 0,
+	max = 900,
+	default = 90,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_ExplorerTraitRevealRadius,
+}
+option ExplorerTrait.Dynamic
+{
+	type = boolean,
+	default = true,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_ExplorerTraitDynamic,
+}
+option ExplorerTrait.CellsToObtain
+{
+	type = integer,
+	min = 0,
+	max = 3000,
+	default = 100,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_ExplorerTraitCellsToObtain,
+}
+option ExplorerTrait.PercentageToCountCellExplored
+{
+	type = integer,
+	min = 0,
+	max = 100,
+	default = 20,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_PercentageToCountCellExplored,
+}
+option ExplorerTrait.ExplorationRadius
+{
+	type = integer,
+	min = 0,
+	max = 30,
+	default = 10,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_ExplorationRadius,
+}
