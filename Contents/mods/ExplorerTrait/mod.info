@@ -1,4 +1,6 @@
 name=Explorer Trait
 poster=poster.png
 id=ExplorerTrait
-description= Adds a trait that triples the player's exploration radius.
+description= Adds a trait that extends the player's exploration radius.
+icon=icon.png
+Authors=Champygnakx, MusicManiac
