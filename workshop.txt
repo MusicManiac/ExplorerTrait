@@ -1,0 +1,9 @@
+version=1
+id=2760950740
+title=Explorer Trait
+description=This mod adds an Explorer Trait with the following effects:
+description=- Costs 1 points,
+description=- Increases the drawing map radius by 120 tiles.,
+description=- Gives minor foraging stats:  +0.5 foraging radius, -10% weather effect, -2% darkness effect.
+tags=Build 41;Interface;Map;Traits
+visibility=public

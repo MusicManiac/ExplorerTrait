@@ -1,0 +1,4 @@
+name=Explorer Trait
+poster=poster.png
+id=ExplorerTrait
+description= Adds a trait that triples the player's exploration radius.
