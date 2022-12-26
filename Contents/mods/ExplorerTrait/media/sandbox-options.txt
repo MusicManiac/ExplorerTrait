@@ -16,6 +16,13 @@ option ExplorerTrait.Dynamic
 	page = ExplorerTrait, 
 	translation = ExplorerTrait_ExplorerTraitDynamic,
 }
+option ExplorerTrait.ShowExploredCellsStat
+{
+	type = boolean,
+	default = true,
+	page = ExplorerTrait, 
+	translation = ExplorerTrait_ShowExploredCellsStat,
+}
 option ExplorerTrait.CellsToObtain
 {
 	type = integer,

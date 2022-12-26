@@ -47,7 +47,7 @@ end
 
 function ETLocationUpdate()
 	local player = getPlayer();
-	if not player:HasTrait("Explorer") then
+	if not player:HasTrait("Explorer") or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
 		local playerX = math.floor(player:getX());
 		local playerY = math.floor(player:getY());
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
@@ -80,7 +80,7 @@ function ETLocationUpdate()
 				HaloTextHelper.addTextWithArrow(player, "Cell #"..lastUsedCellKeys[i].." explored. Total cells explored: "..ExplorerTraitData.ExploredCellsCounter, true, HaloTextHelper.getColorGreen());
 			end
 		end
-		if ExplorerTraitData.ExploredCellsCounter >= SandboxVars.ExplorerTrait.CellsToObtain then
+		if ExplorerTraitData.ExploredCellsCounter >= SandboxVars.ExplorerTrait.CellsToObtain and not player:HasTrait("Explorer") then
 			player:getTraits():add("Explorer");
 			HaloTextHelper.addTextWithArrow(player, getText("UI_trait_explorer"), true, HaloTextHelper.getColorGreen());
 		end
@@ -88,9 +88,10 @@ function ETLocationUpdate()
 end
 
 function ETInitialize()
-	if SandboxVars.ExplorerTrait.Dynamic == true then
+	if SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
 		Events.EveryOneMinute.Add(ETLocationUpdate);
 		--Events.EveryTenMinutes.Add(ETDataDump);
+		-- print(getPlayer():getModData().ExplorerTrait.ExploredCellsCounter)
 		local player = getPlayer();
 		player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
