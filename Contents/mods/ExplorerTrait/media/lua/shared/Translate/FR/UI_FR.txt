@@ -1,4 +1,4 @@
 UI_FR = {
     UI_trait_explorer = "Explorateur",
-    UI_trait_explorerdesc="Rayon d'exploration doublÃ©."
+    UI_trait_explorerdesc="Rayon d'exploration doublé."
 }
