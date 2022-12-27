@@ -1,4 +1,4 @@
-UI_EN = {
+UI_FR = {
     UI_trait_explorer = "Explorer",
     UI_trait_explorerdesc="Doubled exploration radius."
 }
