@@ -87,12 +87,12 @@ function ETLocationUpdate()
 	end
 end
 
-function ETInitialize()
+function ETInitialize( _playerIndex, _player)
 	if SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
 		Events.EveryOneMinute.Add(ETLocationUpdate);
 		--Events.EveryTenMinutes.Add(ETDataDump);
 		-- print(getPlayer():getModData().ExplorerTrait.ExploredCellsCounter)
-		local player = getPlayer();
+		local player = _player;
 		player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
 		ExplorerTraitData.ExploredCellsCounter = ExplorerTraitData.ExploredCellsCounter or 0;
@@ -101,4 +101,5 @@ function ETInitialize()
 	end
 end
 
-Events.OnGameStart.Add(ETInitialize);
+-- Events.OnGameStart.Add(ETInitialize);
+Events.OnCreatePlayer.Add(ETInitialize)

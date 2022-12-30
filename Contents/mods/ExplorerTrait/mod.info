@@ -1,6 +1,6 @@
-name=Explorer Trait
+name=Explorer Trait (now dynamic)
 poster=poster.png
 id=ExplorerTrait
-description= Adds a trait that extends the player's exploration radius.
+description= Adds a trait that extends the player's exploration radius. It can be earned dynamically by exploring the map if the option is enabled.
 icon=icon.png
 Authors=Champygnakx, MusicManiac
