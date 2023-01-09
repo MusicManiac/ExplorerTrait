@@ -88,7 +88,9 @@ function ETLocationUpdate()
 end
 
 function ETInitialize( _playerIndex, _player)
-	if SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
+	--print("DET: initializing")
+	if (not isServer() and not isClient()) and (SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true) then
+		--print("DET: initialized in single-player");
 		Events.EveryOneMinute.Add(ETLocationUpdate);
 		--Events.EveryTenMinutes.Add(ETDataDump);
 		-- print(getPlayer():getModData().ExplorerTrait.ExploredCellsCounter)
@@ -98,8 +100,11 @@ function ETInitialize( _playerIndex, _player)
 		ExplorerTraitData.ExploredCellsCounter = ExplorerTraitData.ExploredCellsCounter or 0;
 		ExplorerTraitData.Cell = ExplorerTraitData.Cell or {};
 		ETCellPercentageToCountCellExplored = math.floor(90000 * SandboxVars.ExplorerTrait.PercentageToCountCellExplored * 0.01);
+	else
+		--print("DET: Purging Explorer Mod Data.")
+		local player = _player;
+		player:getModData().ExplorerTrait = nil;
 	end
 end
 
--- Events.OnGameStart.Add(ETInitialize);
 Events.OnCreatePlayer.Add(ETInitialize)
