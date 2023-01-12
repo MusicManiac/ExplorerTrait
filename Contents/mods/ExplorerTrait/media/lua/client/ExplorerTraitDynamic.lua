@@ -22,16 +22,56 @@ function table.bininsert(t, value, fcomp)
 	return (iMid + iState)
 end
 
-function cantorKeyGenerator(x, y)
+local function cantorKeyGenerator(x, y)
 	return (x + y) * (x + y + 1) / 2 + x;
 end
 
-function ETDataDump()
+local function ThinOutCellList(lastUnexploredKey)
 	local player = getPlayer();
 	player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 	local ExplorerTraitData = player:getModData().ExplorerTrait;
+	--print("ExplorerTraitData in ThinOutCellList: "..tostring(ExplorerTraitData));
+	--print("ExplorerTraitData.Cell in ThinOutCellList: "..tostring(ExplorerTraitData.Cell));
+	local lowestExplored = lastUnexploredKey;
 	for key in pairs(ExplorerTraitData.Cell) do
-		print("Cell #"..key.." has "..#ExplorerTraitData.Cell[key].ExploredTiles.." explored tiles");
+		if ExplorerTraitData.Cell[key].VisitedOrder < ExplorerTraitData.Cell[lowestExplored].VisitedOrder then
+			lowestExplored = key;
+		end
+	end
+	print("DET: Oldest cell key "..lowestExplored..", visited order: "..ExplorerTraitData.Cell[lowestExplored].VisitedOrder..", Cell data is purged.");
+	ExplorerTraitData.Cell[lowestExplored] = nil;
+end
+
+local function ETDataDump()
+	local player = getPlayer();
+	player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
+	local ExplorerTraitData = player:getModData().ExplorerTrait;
+	--print("ExplorerTraitData in ETDataDump: "..tostring(ExplorerTraitData));
+	--print("ExplorerTraitData.Cell in ETDataDump: "..tostring(ExplorerTraitData.Cell));
+	local totalCells = 0;
+	local totalExploredCells = 0;
+	local totalTiles = 0;
+	local lastUnexploredKey = 0;
+	for key in pairs(ExplorerTraitData.Cell) do
+		totalCells = totalCells + 1;
+		if ExplorerTraitData.Cell[key].ExploredTiles ~= nil then
+			totalTiles = totalTiles + #ExplorerTraitData.Cell[key].ExploredTiles;
+			if ExplorerTraitData.Cell[key].IsExplored == false then
+				lastUnexploredKey = key;
+				--print("Cell #"..key.." has "..#ExplorerTraitData.Cell[key].ExploredTiles.." explored tiles, compared to needed "..ETCellPercentageToCountCellExplored);
+			else
+				print("DET: Cell "..key.." is explored, purging unneded data from it. Removed "..#ExplorerTraitData.Cell[key].ExploredTiles.." tile entries");
+				ExplorerTraitData.Cell[key].ExploredTiles = nil;
+			end
+		end
+	end
+	print("DET: Data has total of "..totalCells.." cells that contain in total "..totalTiles.." explored tiles");
+	if totalCells > SandboxVars.ExplorerTrait.CellsRemembered then 
+		print("DET: Data has more than "..SandboxVars.ExplorerTrait.CellsRemembered.." cells, purging oldest one");
+		ThinOutCellList(lastUnexploredKey)
+	elseif totalTiles > 100000 then
+		print("DET: Data has more than 100k tiles, purging oldest one");
+		ThinOutCellList(lastUnexploredKey) 
 	end
 end
 
@@ -42,7 +82,9 @@ function addNewCellToList(cellKey)
 	ExplorerTraitData.Cell[cellKey] = {};
 	ExplorerTraitData.Cell[cellKey].ExploredTiles = {};
 	ExplorerTraitData.Cell[cellKey].IsExplored = false;
-	--print("Successfully added cell with key "..cellKey);
+	ExplorerTraitData.Cell[cellKey].VisitedOrder = ExplorerTraitData.VisitedOrder;
+	print("DET: Successfully added cell with key "..cellKey..", VisitedOrder: ".. ExplorerTraitData.VisitedOrder);
+	ExplorerTraitData.VisitedOrder = ExplorerTraitData.VisitedOrder + 1;
 end
 
 function ETLocationUpdate()
@@ -52,7 +94,7 @@ function ETLocationUpdate()
 		local playerY = math.floor(player:getY());
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
 
-		local size = 10;
+		local size = SandboxVars.ExplorerTrait.ExplorationRadius;
 		local scoutedAreaMinX = playerX - size;
 		local scoutedAreaMinY = playerY - size;
 		local scoutedAreaMaxX = playerX + size;
@@ -87,23 +129,26 @@ function ETLocationUpdate()
 	end
 end
 
+
 function ETInitialize( _playerIndex, _player)
-	--print("DET: initializing")
-	if (not isServer() and not isClient()) and (SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true) then
-		--print("DET: initialized in single-player");
+	print("DET: initializing")
+	if SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
 		Events.EveryOneMinute.Add(ETLocationUpdate);
-		--Events.EveryTenMinutes.Add(ETDataDump);
-		-- print(getPlayer():getModData().ExplorerTrait.ExploredCellsCounter)
+		Events.EveryTenMinutes.Add(ETDataDump);
 		local player = _player;
 		player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
 		ExplorerTraitData.ExploredCellsCounter = ExplorerTraitData.ExploredCellsCounter or 0;
 		ExplorerTraitData.Cell = ExplorerTraitData.Cell or {};
+		ExplorerTraitData.VisitedOrder = ExplorerTraitData.VisitedOrder or 1;
+		for key in pairs(ExplorerTraitData.Cell) do -- applying visited order through out existing moddata if it's missing one
+			if ExplorerTraitData.Cell[key].VisitedOrder == nil then
+				ExplorerTraitData.Cell[key].VisitedOrder = ExplorerTraitData.VisitedOrder
+				ExplorerTraitData.VisitedOrder = ExplorerTraitData.VisitedOrder + 1;
+				print("DET: Cell #"..key.." didnt have visited order field, now has "..ExplorerTraitData.Cell[key].VisitedOrder);
+			end
+		end
 		ETCellPercentageToCountCellExplored = math.floor(90000 * SandboxVars.ExplorerTrait.PercentageToCountCellExplored * 0.01);
-	else
-		--print("DET: Purging Explorer Mod Data.")
-		local player = _player;
-		player:getModData().ExplorerTrait = nil;
 	end
 end
 
