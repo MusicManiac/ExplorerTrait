@@ -9,7 +9,12 @@ Sandbox_FR = {
 	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain = "Nombre de cellules explorées requis pour aquérir le trait",
 	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain_tooltip = "La carte du monde est actuellement 60x50=3000 cellules.<br>Cette option n'a quasiment pas d'impact sur la performance",
 	Sandbox_ExplorerTrait_PercentageToCountCellExplored = "% d'une cellule a explorer pour la compter comme explorée",
-	Sandbox_ExplorerTrait_PercentageToCountCellExplored_tooltip = "Chaque cellule contient 300x300=90k carrés.<br>Cette option n'a quasiment pas d'impact sur la performance",
+
+	Sandbox_ExplorerTrait_PercentageToCountCellExplored_tooltip = "Chaque cellule contient 300x300=90k carrés.<br>Cette option a peu d'impact sur la performance. Seulement les données de 6 derni?res cellules (6 par défaut) sont sauvegardées, donc ne mettez pas la valeur de % de cellule ? explorer trop haut sinon le trait sera bien plus difficile ? aquérir. IMPORTANT: Les données sauvegardées causent un plantage si le nombre de carrés en mémoire exc?de environ 90000, donc n'augmentez pas trop les valeurs sandbox ou vous risquez de planter votre partie.",
+
 	Sandbox_ExplorerTrait_ExplorationRadius = "Rayon d'exploration",
 	Sandbox_ExplorerTrait_ExplorationRadius_tooltip = "Le nombre de carrés comptés comme 'explorés' autour du joueur chaque minute. 10 = 20x20 = 400 carrés autour du joueur, qui seront ajoutés ? la liste de carrés explorés de la cellule. <br>Cette option peut avoir un impact important sur la performance.<br>Au dessus de 20 n'est pas recommendé.<br>10 = 20x20 = 400 carrés/min | 11 = 22x22 = 484 carrés/min<br>12 = 24x24 = 576 carrés/min | 13 = 26x26 = 676 carrés/min<br>14 = 28x28 = 784 carrés/min | 15 = 30x30 = 900 carrés/min<br>16 = 32x32 = 1024 carrés/min | 17 = 34x34 = 1156 carrés/min<br>18 = 36x36 = 1296 carrés/min | 20 = 40x40 = 1600 carrés/min<br>25 = 50x50 = 2500 carrés/min | 30 = 60x60 = 3600 carrés/min",
+
+	Sandbox_ExplorerTrait_CellsRemembered = "Cellules gardées en mémoire"
+	Sandbox_ExplorerTrait_CellsRemembered_tooltip = "Combien de cellules sont gardées en mémoire. GROS impact sur la performance."
 }

@@ -69,8 +69,8 @@ local function ETDataDump()
 	if totalCells > SandboxVars.ExplorerTrait.CellsRemembered then 
 		print("DET: Data has more than "..SandboxVars.ExplorerTrait.CellsRemembered.." cells, purging oldest one");
 		ThinOutCellList(lastUnexploredKey)
-	elseif totalTiles > 100000 then
-		print("DET: Data has more than 100k tiles, purging oldest one");
+	elseif totalTiles > 90000 then
+		print("DET: Data has more than 90k tiles, purging oldest one");
 		ThinOutCellList(lastUnexploredKey) 
 	end
 end

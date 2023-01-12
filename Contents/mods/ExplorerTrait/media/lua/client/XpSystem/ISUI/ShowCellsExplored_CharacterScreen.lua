@@ -9,11 +9,10 @@ ISCharacterScreen.old_render = ISCharacterScreen.render
 
 function ISCharacterScreen:render()
     
-    if(not SandboxVars.ExplorerTrait.ShowExploredCellsStat) then
+    if(not SandboxVars.ExplorerTrait.ShowExploredCellsStat or isServer() or isClient()) then
         ISCharacterScreen.old_render(self)
         return;
     end
-
     if self:traitsChanged() then
         self:loadTraits();
     end
