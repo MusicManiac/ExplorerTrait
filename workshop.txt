@@ -1,29 +1,29 @@
 version=1
 id=2760950740
 title=Explorer Trait (now dynamic)
-description=This mod adds an Explorer trait with the following effects:
-description=[list]
-description=[*] Costs 1 points,
-description=[*] Doubles the drawing map radius.(now configurable in sandbox settings, default = 90)
-description=[*] Minor foraging stats: +0.5 search radius, -10% weather effect, -2% darkness effect, and +3% berries, mushrooms, forest rarities, wild plants, wild herbs and firewood.
-description=[/list]
-description=
-description=[h1]Dynamic Update (27/12/2022) - Singleplayer only[/h1]
-description=If you check the dynamic option, you'll be able to acquire the Explorer trait dynamically.
-description=If you check the option to show the number of cells explored, it will keep track of explored cells, even after you aquire the trait.
-description=This part of the mod will only work in single-player. Code checks if you're in correct gamemode so you don't have to be afraid of leaving sandbox options in conflicting configuration.
-description=[i]All thanks and credits to @MusicManiac for the Dynamic update.[/i]
-description=
-description=[u]Compatibility:[/u]
-description=If you have a mod that changes the info screen, (like Reorganized Info Screen) you'll need to uncheck the option to show the explored cells on the infor screen in sandbox settings. If it is checked, it will keep the vanilla info screen with the cells explored stat.
-description=
-description=See the 3rd image preview to get an idea of the radius increase. (total radius is 90 tiles)
-description=
-description=Works well with the mod [u][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2685168362]More Description For Traits[/url][/u] to visualize foraging stats in the trait description.
-description=
-description=Wanna use the code to make your own mod ? [url=http://theindiestone.com/forums/index.php/topic/2530-mod-permissions/?p=36478]Ask for permission[/url]
-description=
-description=Workshop ID: 2760950740
+description=This mod adds an Explorer trait with the following effects:
+description=[list]
+description=[*] Costs 1 points,
+description=[*] Doubles the drawing map radius.(now configurable in sandbox settings, default = 90)
+description=[*] Minor foraging stats: +0.5 search radius, -10% weather effect, -2% darkness effect, and +3% berries, mushrooms, forest rarities, wild plants, wild herbs and firewood.
+description=[/list]
+description=
+description=[h1]Dynamic Update (27/12/2022) - Singleplayer only[/h1]
+description=If you check the dynamic option, you'll be able to acquire the Explorer trait dynamically.
+description=If you check the option to show the number of cells explored, it will keep track of explored cells, even after you aquire the trait.
+description=This part of the mod will only work in single-player. Code checks if you're in correct gamemode so you don't have to be afraid of leaving sandbox options in conflicting configuration.
+description=[i]All thanks and credits to @MusicManiac for the Dynamic update.[/i]
+description=
+description=[u]Compatibility:[/u]
+description=If you have a mod that changes the info screen, (like Reorganized Info Screen) you'll need to uncheck the option to show the explored cells on the infor screen in sandbox settings. If it is checked, it will keep the vanilla info screen with the cells explored stat.
+description=
+description=See the 3rd image preview to get an idea of the radius increase. (total radius is 90 tiles)
+description=
+description=Works well with the mod [u][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2685168362]More Description For Traits[/url][/u] to visualize foraging stats in the trait description.
+description=
+description=Wanna use the code to make your own mod ? [url=http://theindiestone.com/forums/index.php/topic/2530-mod-permissions/?p=36478]Ask for permission[/url]
+description=
+description=Workshop ID: 2760950740
 description=Mod ID: ExplorerTrait
 tags=Build 41;Interface;Map;Traits
 visibility=public

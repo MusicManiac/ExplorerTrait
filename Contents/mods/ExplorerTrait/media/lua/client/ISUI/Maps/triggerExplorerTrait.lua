@@ -6,7 +6,7 @@ local function triggerExplorerTrait()
 	local radius = SandboxVars.ExplorerTrait.RevealRadius;
 	local px = player:getX()
 	local py = player:getY()
-	WorldMapVisited.getInstance():setKnownInSquares(px-radius, py-radius, px+radius, py+radius)
+	WorldMapVisited.getInstance():setVisitedInSquares(px-radius, py-radius, px+radius, py+radius)
 end
 
 Events.EveryOneMinute.Add(triggerExplorerTrait)
