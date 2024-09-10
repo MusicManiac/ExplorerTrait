@@ -6,30 +6,37 @@ option ExplorerTrait.RevealRadius
 	min = 0,
 	max = 900,
 	default = 90,
-	page = ExplorerTrait, 
+	page = ExplorerTrait,
 	translation = ExplorerTrait_ExplorerTraitRevealRadius,
 }
 option ExplorerTrait.Dynamic
 {
 	type = boolean,
 	default = true,
-	page = ExplorerTrait, 
+	page = ExplorerTrait,
 	translation = ExplorerTrait_ExplorerTraitDynamic,
 }
 option ExplorerTrait.ShowExploredCellsStat
 {
 	type = boolean,
 	default = true,
-	page = ExplorerTrait, 
+	page = ExplorerTrait,
 	translation = ExplorerTrait_ShowExploredCellsStat,
+}
+option ExplorerTrait.ClearModDataAfterGainingTrait
+{
+	type = boolean,
+	default = true,
+	page = ExplorerTrait,
+	translation = ExplorerTrait_ClearModDataAfterGainingTrait,
 }
 option ExplorerTrait.CellsToObtain
 {
 	type = integer,
 	min = 0,
 	max = 3000,
-	default = 50,
-	page = ExplorerTrait, 
+	default = 60,
+	page = ExplorerTrait,
 	translation = ExplorerTrait_ExplorerTraitCellsToObtain,
 }
 option ExplorerTrait.CellsRemembered
@@ -37,8 +44,8 @@ option ExplorerTrait.CellsRemembered
 	type = integer,
 	min = 1,
 	max = 20,
-	default = 6,
-	page = ExplorerTrait, 
+	default = 4,
+	page = ExplorerTrait,
 	translation = ExplorerTrait_CellsRemembered,
 }
 option ExplorerTrait.PercentageToCountCellExplored
@@ -46,8 +53,8 @@ option ExplorerTrait.PercentageToCountCellExplored
 	type = integer,
 	min = 0,
 	max = 50,
-	default = 20,
-	page = ExplorerTrait, 
+	default = 15,
+	page = ExplorerTrait,
 	translation = ExplorerTrait_PercentageToCountCellExplored,
 }
 option ExplorerTrait.ExplorationRadius
@@ -56,6 +63,6 @@ option ExplorerTrait.ExplorationRadius
 	min = 0,
 	max = 30,
 	default = 10,
-	page = ExplorerTrait, 
+	page = ExplorerTrait,
 	translation = ExplorerTrait_ExplorationRadius,
 }

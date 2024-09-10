@@ -3,8 +3,10 @@ Sandbox_EN = {
 	Sandbox_ExplorerTrait_ExplorerTraitRevealRadius = "Reveal radius",
 	Sandbox_ExplorerTrait_ExplorerTraitRevealRadius_tooltip = "How much of the map around you is revealed. Default = 90 = doubled exploration radius",
 	Sandbox_ExplorerTrait_ExplorerTraitDynamic = "Explorer trait is dynamic",
+	Sandbox_ExplorerTrait_ClearModDataAfterGainingTrait = "Clear Moddata after gaining the trait"
+	Sandbox_ExplorerTrait_ClearModDataAfterGainingTrait_tooltip = "Having Explorer trait dynamic puts A LOT of values into moddata. This setting will clear that information out after you gained the trait, as it's really not needed and it just bloats the moddata. If this is enabled, 'Show the number of explored cells on the info screen' setting will be ignored after you earn the trait and auto-set to false"
 	Sandbox_ExplorerTrait_ShowExploredCellsStat = "Show the number of explored cells on the info screen",
-	Sandbox_ExplorerTrait_ShowExploredCellsStat_tooltip = "Displayed on the character's info screen",
+	Sandbox_ExplorerTrait_ShowExploredCellsStat_tooltip = "Displayed on the character's info screen. This setting is auto-set to false after earning the trait if previous setting is enabled.",
 	Sandbox_ExplorerTrait_ExplorerTraitDynamic_tooltip = "If true, you can earn Explorer trait by exploring stuff",
 	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain = "Amount of explored cells to earn the trait",
 	Sandbox_ExplorerTrait_ExplorerTraitCellsToObtain_tooltip = "World map currently is 60x50=3000 cells.<br>This option has no impact on performance",

@@ -8,8 +8,8 @@ ISCharacterScreen.old_render = ISCharacterScreen.render
 
 
 function ISCharacterScreen:render()
-    
-    if(not SandboxVars.ExplorerTrait.ShowExploredCellsStat or isServer() or isClient()) then
+
+    if(not SandboxVars.ExplorerTrait.ShowExploredCellsStat or isServer() or isClient() or (SandboxVars.ExplorerTrait.ClearModDataAfterGainingTrait and self.char:hasTrait("Explorer"))) then
         ISCharacterScreen.old_render(self)
         return;
     end
@@ -105,7 +105,7 @@ function ISCharacterScreen:render()
     self.hairButton:setY(finalY);
     self.hairButton.enable = true;
     self.hairButton.tooltip = nil;
-    
+
     if not isDebugEnabled() then
         local currentHairStyle = getHairStylesInstance():FindMaleStyle(self.char:getHumanVisual():getHairModel())
         if self.char:isFemale() then
@@ -148,7 +148,7 @@ function ISCharacterScreen:render()
     local textWid3 = getTextManager():MeasureStringX(UIFont.Small, getText("IGUI_char_Survived_For"))
     local textWid4 = getTextManager():MeasureStringX(UIFont.Small, getText("IGUI_char_Cells_Explored"))
     local x = 20 + math.max( textWid4, math.max(textWid1, math.max(textWid2, textWid3)))
-    
+
     if self.favouriteWeapon then
         self:drawTextRight(getText("IGUI_char_Favourite_Weapon"), x, z, 1,1,1,1, UIFont.Small);
         self:drawText(self.favouriteWeapon, x + 10, z, 1,1,1,0.5, UIFont.Small);

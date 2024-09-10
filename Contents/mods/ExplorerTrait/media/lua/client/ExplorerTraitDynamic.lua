@@ -38,7 +38,7 @@ local function ThinOutCellList(lastUnexploredKey)
 			lowestExplored = key;
 		end
 	end
-	print("DET: Oldest cell key "..lowestExplored..", visited order: "..ExplorerTraitData.Cell[lowestExplored].VisitedOrder..", Cell data is purged.");
+	print("Dynamic Explorer Trait: Oldest cell key "..lowestExplored..", visited order: "..ExplorerTraitData.Cell[lowestExplored].VisitedOrder..", Cell data is purged.");
 	ExplorerTraitData.Cell[lowestExplored] = nil;
 end
 
@@ -60,22 +60,22 @@ local function ETDataDump()
 				lastUnexploredKey = key;
 				--print("Cell #"..key.." has "..#ExplorerTraitData.Cell[key].ExploredTiles.." explored tiles, compared to needed "..ETCellPercentageToCountCellExplored);
 			else
-				print("DET: Cell "..key.." is explored, purging unneded data from it. Removed "..#ExplorerTraitData.Cell[key].ExploredTiles.." tile entries");
+				print("Dynamic Explorer Trait: Cell "..key.." is explored, purging unneded data from it. Removed "..#ExplorerTraitData.Cell[key].ExploredTiles.." tile entries");
 				ExplorerTraitData.Cell[key].ExploredTiles = nil;
 			end
 		end
 	end
-	print("DET: Data has total of "..totalCells.." cells that contain in total "..totalTiles.." explored tiles");
-	if totalCells > SandboxVars.ExplorerTrait.CellsRemembered then 
-		print("DET: Data has more than "..SandboxVars.ExplorerTrait.CellsRemembered.." cells, purging oldest one");
+	print("Dynamic Explorer Trait: Data has total of "..totalCells.." cells that contain in total "..totalTiles.." explored tiles");
+	if totalCells > SandboxVars.ExplorerTrait.CellsRemembered then
+		print("Dynamic Explorer Trait: Data has more than "..SandboxVars.ExplorerTrait.CellsRemembered.." cells, purging oldest one");
 		ThinOutCellList(lastUnexploredKey)
 	elseif totalTiles > 90000 then
-		print("DET: Data has more than 90k tiles, purging oldest one");
-		ThinOutCellList(lastUnexploredKey) 
+		print("Dynamic Explorer Trait: Data has more than 90k tiles, purging oldest one");
+		ThinOutCellList(lastUnexploredKey)
 	end
 end
 
-function addNewCellToList(cellKey)
+local function addNewCellToList(cellKey)
 	local player = getPlayer();
 	player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 	local ExplorerTraitData = player:getModData().ExplorerTrait;
@@ -83,11 +83,11 @@ function addNewCellToList(cellKey)
 	ExplorerTraitData.Cell[cellKey].ExploredTiles = {};
 	ExplorerTraitData.Cell[cellKey].IsExplored = false;
 	ExplorerTraitData.Cell[cellKey].VisitedOrder = ExplorerTraitData.VisitedOrder;
-	print("DET: Successfully added cell with key "..cellKey..", VisitedOrder: ".. ExplorerTraitData.VisitedOrder);
+	print("Dynamic Explorer Trait: Successfully added cell with key "..cellKey..", VisitedOrder: ".. ExplorerTraitData.VisitedOrder);
 	ExplorerTraitData.VisitedOrder = ExplorerTraitData.VisitedOrder + 1;
 end
 
-function ETLocationUpdate()
+local function ETLocationUpdate()
 	local player = getPlayer();
 	if not player:HasTrait("Explorer") or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
 		local playerX = math.floor(player:getX());
@@ -130,12 +130,17 @@ function ETLocationUpdate()
 end
 
 
-function ETInitialize( _playerIndex, _player)
-	print("DET: initializing")
+local function ETInitialize( _playerIndex, _player)
+	print("Dynamic Explorer Trait: initializing")
 	if SandboxVars.ExplorerTrait.Dynamic == true or SandboxVars.ExplorerTrait.ShowExploredCellsStat == true then
+		local player = _player;
+		if SandboxVars.ExplorerTrait.ClearModDataAfterGainingTrait == true and player:HasTrait("Explorer") then
+			player:getModData().ExplorerTrait = {};
+			print("Dynamic Explorer Trait: SandboxVars.ExplorerTrait.ClearModDataAfterGainingTrait is set to true and player has the trait, purging modData related to this mod")
+			return;
+		end
 		Events.EveryOneMinute.Add(ETLocationUpdate);
 		Events.EveryTenMinutes.Add(ETDataDump);
-		local player = _player;
 		player:getModData().ExplorerTrait = player:getModData().ExplorerTrait or {};
 		local ExplorerTraitData = player:getModData().ExplorerTrait;
 		ExplorerTraitData.ExploredCellsCounter = ExplorerTraitData.ExploredCellsCounter or 0;
@@ -145,7 +150,7 @@ function ETInitialize( _playerIndex, _player)
 			if ExplorerTraitData.Cell[key].VisitedOrder == nil then
 				ExplorerTraitData.Cell[key].VisitedOrder = ExplorerTraitData.VisitedOrder
 				ExplorerTraitData.VisitedOrder = ExplorerTraitData.VisitedOrder + 1;
-				print("DET: Cell #"..key.." didnt have visited order field, now has "..ExplorerTraitData.Cell[key].VisitedOrder);
+				print("Dynamic Explorer Trait: Cell #"..key.." didnt have visited order field, now has "..ExplorerTraitData.Cell[key].VisitedOrder);
 			end
 		end
 		ETCellPercentageToCountCellExplored = math.floor(90000 * SandboxVars.ExplorerTrait.PercentageToCountCellExplored * 0.01);
